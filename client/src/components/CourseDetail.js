@@ -13,7 +13,7 @@ export default class Courses extends Component {
 
     componentDidMount() {
 
-        axios.get('http://localhost:5000/api/courses/:id')
+        axios.get('http://localhost:5000/api/courses/1')
             .then(response => {
                 this.setState({
                     data: response.data
@@ -27,15 +27,16 @@ export default class Courses extends Component {
 
     render() {
         let dataHtml = this.state.data.map(dataItem => 
-            <div className="grid-33"><a class="course--module course--link" href="course-detail.html">
-            <h4 className="course--label">Course Detail</h4>
-            <h3 className="course--title">{dataItem.title}</h3>
-          </a></div>
+          <div className="grid-33"></div>
+            // <div className="grid-33"><a class="course--module course--link" href="course-detail.html">
+            /* <h4 className="course--label">Course Detail</h4>
+            <h3 className="course--title">{dataItem.title}</h3> */
+          
         );
 
         return (
             <div className="bounds course--detail">
-            {dataHtml}
+            {/* {dataHtml} */}
             <div className="grid-66">
              <div className="course--header">
                <h4 className="course--label">Course Detail</h4>

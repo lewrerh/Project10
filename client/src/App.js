@@ -25,6 +25,8 @@ import Header from './components/Header';
 
 import Courses from './components/Courses';
 
+import CourseDetail from './components/CourseDetail';
+
 //import withContext from './Context';
 
 const HeaderWithContext = withContext(Header);
@@ -36,19 +38,19 @@ const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 
-export default class App extends Component {
+//export default class App extends Component {
+export default () => (
+    // constructor() {
+    //     super();
+    // }
 
-    constructor() {
-        super();
-    }
-
-    componentDidMount() {
+    // componentDidMount() {
         
-    }
+    // }
 
-    render() {
+    // render() {
 
-        return (
+        // return (
           <Router>
             <div>
                <HeaderWithContext />
@@ -56,7 +58,8 @@ export default class App extends Component {
                <Switch>
                  
                   <Route exact path="/" component={Public} />
-                  <Route path="/courses" component={Courses} />
+                  <Route exact path="/courses" component={Courses} />
+                  <Route exact path="/courses/:id" component={CourseDetail} />
                   <PrivateRoute path="/authenticated" component={AuthWithContext} />
                   <Route path="/signin" component={UserSignInWithContext} />
                   <Route path="/signup" component={UserSignUpWithContext} />
@@ -66,8 +69,8 @@ export default class App extends Component {
             </div>
           </Router>  
         );
-    }
-}
+    
+
 
 
 // import React from 'react';
