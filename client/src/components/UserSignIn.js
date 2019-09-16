@@ -62,12 +62,12 @@ export default class UserSignIn extends Component {
     });
   }
 
-  submit = () => {
+  submit = () => {    //Function to get auth User
     const { context } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/authenticated' } };
     const { username, password } = this.state;
 
-    context.actions.signIn(username, password)
+    context.actions.signIn(username, password)  //Signin User from context
       .then((user) => {
         if (user === null) {
           this.setState(() => {
