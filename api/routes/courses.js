@@ -138,8 +138,8 @@ router.post('/', authenticateUser, async ( req, res, next ) => {
     
     } catch (err) {
     
-    if (err.name === 'SequelizeValidationerr') {
-    err.message = err.errs.map(value => value.message);
+    if (err.name === 'SequelizeValidationError') {
+    err.message = err.errors.map(value => value.message);
     err.status = 400;
     }
     

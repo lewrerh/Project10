@@ -49,15 +49,46 @@ export default class Data {
       throw new Error();
     }
   }
+  async getCourse(id) {
+    const response = await this.api(`/courses/${id}`);
+    if (response.status === 200) {
+      return response.json().then(data => data);
+    }
+    else if (response.status === 400) {
+      return response.json().then(data => {
+        return data.error.errors;
+    });
+  }
+    else {
+      throw new Error();
+    }
+  }
+
+  
+  async updateCourse(id, course, username, password) {
+    const response = await this.api(`/courses/${id}`, 'PUT', course, true, {username, password});
+    if (response.status === 204) {
+      return [];
+    }
+    else if (response.status === 403 || response.status ===400) {
+      return response.json().then(data => {
+        return data.error.errors;
+    });
+  }
+    else {
+      throw new Error();
+    }
+  }
 
   async createCourse(course, username, password) {
     const response = await this.api('/courses', 'POST', course, true, {username, password} );
+    alert(response);
     if (response.status === 201) {
       return [];
     }
     else if (response.status === 400) {
       return response.json().then(data => {
-        return data.errors;
+        return data.error.errors;
       });
     }
     else {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class CourseDetail extends Component {
 
@@ -37,10 +38,10 @@ export default class CourseDetail extends Component {
 
         return (
           <div>
-            <div class="actions--bar">
-                <div class="bounds">
-                    <div class="grid-100"><span><a class="button" href="update-course.html">Update Course</a><a class="button" href="#">Delete Course</a></span><a
-                        class="button button-secondary" href="index.html">Return to List</a></div>
+            <div className="actions--bar">
+                <div className="bounds">
+                        <div className="grid-100"><span><Link className="button" to={`/courses/${course.id}/update/`} >Update Course</Link><Link className="button" to="/deleteCourse" >Delete Course</Link></span><Link
+                        className="button button-secondary" to="/" >Return to List</Link></div>
                 </div>
             </div>
                 <div className="bounds course--detail">
@@ -57,11 +58,11 @@ export default class CourseDetail extends Component {
                     <div className="grid-25 grid-right">
                         <div className="course--stats">
                             <ul className="course--stats--list">
-                                <li class="course--stats--list--item">
+                                <li className="course--stats--list--item">
                                     <h4>Estimated Time</h4>
                                     <h3>{course.estimatedTime}</h3>
                                 </li>
-                                <li class="course--stats--list--item">
+                                <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
                                     <ul>
                                         <li>{course.materialsNeeded}</li>
@@ -75,4 +76,5 @@ export default class CourseDetail extends Component {
         )
     };
 }
+
 
