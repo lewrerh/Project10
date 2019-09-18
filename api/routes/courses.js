@@ -169,7 +169,7 @@ router.delete('/:id', authenticateUser, async (req, res, next) => {
             }
             else {
                 err.status = 403;
-                err.message = 'Course userId and authenticated userId do not match. You can only update your course';
+                err.message = 'Course userId and authenticated userId do not match. You can only delete your course';
                 throw err;
             }
        }

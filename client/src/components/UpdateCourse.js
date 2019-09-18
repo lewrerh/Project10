@@ -60,7 +60,7 @@ export default class UpdateCourse extends Component {
                                 <h4 className="course--label">Course</h4>
                                 <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..."
                                     value={title} onChange={this.change} /></div>
-                                <p>By Joe Smith</p>
+                                <p>By </p>
                             </div>
                             <div className="course--description">
                                 <div><textarea id="description" name="description" className="" placeholder="Course description..." onChange={this.change} value={description} ></textarea></div>
@@ -126,12 +126,16 @@ export default class UpdateCourse extends Component {
         }
 
         context.data.updateCourse(id, course, authUser.username, authUser.password)
-            .then(errors => {
+            .then(error => {
 
-                if (errors.length) {
-                    this.setState({ errors: errors });
-                } else {
-                    this.setState({ errors: [] });
+                if (error.name == 'SequelizeValidationError') {
+                    this.setState({ errors: error.errors });
+                
+                } else if (error.status == 403) {
+                    this.setState({ errors: [{message: error.message}] });
+                }
+                else {
+                    this.setState({ errors: []});
 
                     this.props.history.push('/');
 
