@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CourseForm from './CourseForm';
 
 export default class CreateCourse extends Component {
-    state = {
+    state = {                   //Init state for Create Course 
         title: '',
         description: '',
         estimatedTime: '',
@@ -24,7 +24,7 @@ export default class CreateCourse extends Component {
         const authUser = context.authenticatedUser;
 
 
-        return (
+        return (        //Return using CourseForm to Create Course
                  <CourseForm
                     cancel={this.cancel}
                     errors={errors}
@@ -92,7 +92,7 @@ export default class CreateCourse extends Component {
             estimatedTime,
             materialsNeeded,
         };
-
+                 //Auth useer from context & validate errors
         const authUser = context.authenticatedUser;
 
         if (authUser == null) {

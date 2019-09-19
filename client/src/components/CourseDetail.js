@@ -12,7 +12,7 @@ export default class CourseDetail extends Component {   //Stateless component fu
         };
     }
 
-    componentDidMount() {                          
+    componentDidMount() {            //Component mount, getting data from url              
 
         const { id } = this.props.match.params;
 
@@ -35,7 +35,7 @@ export default class CourseDetail extends Component {   //Stateless component fu
             });
     }
 
-    delete = () => {
+    delete = () => {      //Delete course if authenticated user
         const { context } = this.props;
         const { id } = this.props.match.params;
 
@@ -69,7 +69,7 @@ export default class CourseDetail extends Component {   //Stateless component fu
         }
     }
 
-    render() {
+    render() {          //Render data & auth user can update or delete course
         let course = {};
         let user = {};
         const { context } = this.props;
@@ -118,8 +118,8 @@ export default class CourseDetail extends Component {   //Stateless component fu
                                 <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
                                     <ul>
-                                        <ReactMarkDown source={course.materialsNeeded} />
-                                    </ul>
+                                        <ReactMarkDown source={course.materialsNeeded} />    
+                                    </ul>                   
                                 </li>
                             </ul>
                         </div>
@@ -130,7 +130,7 @@ export default class CourseDetail extends Component {   //Stateless component fu
     };
 }
 
-function ErrorsDisplay({ errors }) {
+function ErrorsDisplay({ errors }) {       //Display/validate errors    & React Markdown added above
     let errorsDisplay = null;
 
     if (errors.length) {

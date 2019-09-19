@@ -13,7 +13,7 @@ export default class Courses extends Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount() {    //Get api courses when mounted
 
         axios.get('http://localhost:5000/api/courses')
             .then(response => {
@@ -31,7 +31,7 @@ export default class Courses extends Component {
             });
     }
 
-    render() {
+    render() {       //Render HTML data
         
         let dataHtml = this.state.data.map(dataItem =>
             <div className="grid-33"> <Link className="course--module course--link" to={`/courses/${dataItem.id}`} >

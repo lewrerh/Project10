@@ -13,7 +13,7 @@ export default class UpdateCourse extends Component {
         errors: [],
     }
 
-    componentDidMount() {
+    componentDidMount() {             //Called after component is added to fetch the data. 
 
         const { context } = this.props;
         const { id } = this.props.match.params;
@@ -54,7 +54,7 @@ export default class UpdateCourse extends Component {
             errors,
         } = this.state;
 
-        return (
+        return (                   //Return using CourseForm
             <UpdateCourseForm
                 cancel={this.cancel}
                 errors={errors}
@@ -125,7 +125,7 @@ export default class UpdateCourse extends Component {
             materialsNeeded,
         };
 
-        const authUser = context.authenticatedUser;
+        const authUser = context.authenticatedUser;   //Auth user message/error validation
 
         if (authUser == null) {
             this.setState({ errors: [{ message: "You have to be logged in to update a course"}] });

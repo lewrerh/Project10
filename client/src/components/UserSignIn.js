@@ -62,7 +62,7 @@ export default class UserSignIn extends Component {
     });
   }
 
-  submit = () => {    
+  submit = () => {            //Auth user signin or error message
     const { context } = this.props;
     
     const { emailAddress, password } = this.state;
