@@ -70,7 +70,7 @@ export default class App extends Component {               //Stateless component
 }
 
 
-//******EXTRA CREDIT FEATURES ADDED-NotFound, UnhandledError, Foridded. Added path components
+//*****EXTRA CREDIT FEATURES ADDED-NotFound, UnhandledError, Foridded. Added path components
 //for these routes as we... Course Detail and Update Course components are redirected to 
 //NotFound & Update course component redirected to Forbidden path. Finally, I've redirected to the 
 //Error path 500 to the RES API return.******//
