@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component }  from 'react';         //Imports for all routes used
 import logo from './logo.svg';
 import './App.css';
 import { createCipher } from 'crypto';
@@ -16,18 +16,16 @@ import CreateCourse from './components/CreateCourse';
 import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
 import withContext from './Context';
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute';                //HOC import
 import UserSignIn from './components/UserSignIn';
-import Authenticated from './components/Authenticated';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
-import Forbidden from './Forbidden';
+import Forbidden from './components/Forbidden';
 import NotFound from './components/NotFound';
-import Error from './error';
+import UnhandledError from './components/UnhandledError';
 
-const HeaderWithContext = withContext(Header);
+const HeaderWithContext = withContext(Header);               //Defining routes being used
 const UserSignInWithContext = withContext(UserSignIn);
-const AuthWithContext = withContext(Authenticated);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CreateCourseWithContext = withContext(CreateCourse);
@@ -35,7 +33,7 @@ const UpdateCourseWithContext = withContext(UpdateCourse);
 const CourseDetailWithContext = withContext(CourseDetail);
 
 
-export default class App extends Component {
+export default class App extends Component {               //Stateless component function
 
     constructor() {
         super();
@@ -47,14 +45,13 @@ export default class App extends Component {
 
     render() {
         
-        return (            //Routes set up for each task, private route for authentication
+        return (            //Routes set up for each task, private route for authentication, create & update courses
             <Router>  
                 <div>
                     <HeaderWithContext />
 
                     <Switch>
                         <Route exact path="/" component={Courses} />
-                        <PrivateRoute path="/authenticated" component={AuthWithContext} />
                         <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
                         <Route exact path="/courses/:id" component={CourseDetailWithContext} />
                         <Route path="/signin" component={UserSignInWithContext} />
@@ -62,7 +59,8 @@ export default class App extends Component {
                         <Route path="/signout" component={UserSignOutWithContext} />
                         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
                         <Route path="/forbidden" component={Forbidden} />
-                        <Route path="/error" component={Error} /> 
+                        <Route path="/error" component={UnhandledError} />
+                        <Route path="/notfound" component={NotFound} /> 
                         <Route component={NotFound} />
                     </Switch>
                 </div>

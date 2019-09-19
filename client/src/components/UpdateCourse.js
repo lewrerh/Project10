@@ -8,6 +8,8 @@ export default class UpdateCourse extends Component {
         description: '',
         estimatedTime: '',
         materialsNeeded: '',
+        authorFirstName: '', 
+        authorLastName: '',
         errors: [],
     }
 
@@ -19,14 +21,17 @@ export default class UpdateCourse extends Component {
         context.data.getCourse(id)
             .then(data => {
 
-                if (data.length) {
-                    this.setState({ errors: data });
+                if (data.status == 404) {
+                    this.setState({ errors: [{ message: data.message }] });
+                    this.props.history.push('/notfound');
                 } else {
                     this.setState({
                         title: data.title,
                         description: data.description,
                         estimatedTime: data.estimatedTime,
                         materialsNeeded: data.materialsNeeded,
+                        authorFirstName: data.User.firstName,
+                        authorLastName: data.User.lastName,
                         errors: []
                     });
 
@@ -44,6 +49,8 @@ export default class UpdateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
+            authorFirstName,
+            authorLastName,
             errors,
         } = this.state;
 
@@ -60,7 +67,7 @@ export default class UpdateCourse extends Component {
                                 <h4 className="course--label">Course</h4>
                                 <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..."
                                     value={title} onChange={this.change} /></div>
-                                <p>By </p>
+                                <p>By {authorFirstName} {authorLastName} </p>
                             </div>
                             <div className="course--description">
                                 <div><textarea id="description" name="description" className="" placeholder="Course description..." onChange={this.change} value={description} ></textarea></div>
@@ -132,7 +139,8 @@ export default class UpdateCourse extends Component {
                     this.setState({ errors: error.errors });
                 
                 } else if (error.status == 403) {
-                    this.setState({ errors: [{message: error.message}] });
+                    this.setState({ errors: [{message: error.message}] })
+                    this.props.history.push('/forbidden');
                 }
                 else {
                     this.setState({ errors: []});

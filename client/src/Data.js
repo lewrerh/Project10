@@ -1,13 +1,13 @@
 import config from './config';
 
-export default class Data {
+export default class Data {   //Class usses fetch for functions to use API
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-    const url = config.apiBaseUrl + path;
+    const url = config.apiBaseUrl + path;        //Link referencing config
   
     const options = {
       method,
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8',  
       },
     };
 
@@ -54,9 +54,9 @@ export default class Data {
     if (response.status === 200) {
       return response.json().then(data => data);
     }
-    else if (response.status === 400) {
+    else if (response.status === 404) {
       return response.json().then(data => {
-        return data.error.errors;
+        return data.error;
     });
   }
     else {

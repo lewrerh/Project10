@@ -20,6 +20,10 @@ export default class CreateCourse extends Component {
             errors,
         } = this.state;
 
+        const { context } = this.props;
+        const authUser = context.authenticatedUser;
+
+
         return (
                  <CourseForm
                     cancel={this.cancel}
@@ -33,7 +37,7 @@ export default class CreateCourse extends Component {
                                     <h4 className="course--label">Course</h4>
                                     <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..."
                                         value={title} onChange={this.change} /></div>
-                                        <p>By Joe Smith</p>
+                                        <p>By {authUser.name} </p>
                                 </div>
                                 <div className="course--description">
                                     <div><textarea id="description" name="description" className="" placeholder="Course description..." onChange={this.change} value={description} ></textarea></div>

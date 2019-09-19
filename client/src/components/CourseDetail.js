@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react';      //Imports added
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-export default class CourseDetail extends Component {
+import ReactMarkDown from "react-markdown";
+export default class CourseDetail extends Component {   //Stateless component function
 
     constructor() {
         super();
@@ -12,7 +12,7 @@ export default class CourseDetail extends Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount() {                          
 
         const { id } = this.props.match.params;
 
@@ -25,6 +25,13 @@ export default class CourseDetail extends Component {
             })
             .catch(error => {
                 console.log('Error fetching data', error);
+
+                if (error == 'Error: Request failed with status code 404') {
+                    this.props.history.push('/notfound');
+                    }
+                    else {
+                    this.props.history.push('/error');
+                    }
             });
     }
 
@@ -62,10 +69,11 @@ export default class CourseDetail extends Component {
         }
     }
 
-    
     render() {
         let course = {};
         let user = {};
+        const { context } = this.props;
+        const authUser = context.authenticatedUser;
 
         if (this.state.data) {
             course = this.state.data;
@@ -76,8 +84,16 @@ export default class CourseDetail extends Component {
           <div>
             <div className="actions--bar">
                 <div className="bounds">
-                        <div className="grid-100"><span><Link className="button" to={`/courses/${course.id}/update/`} >Update Course</Link><Link onClick={this.delete} className="button" to="#" >Delete Course</Link></span><Link
-                        className="button button-secondary" to="/" >Return to List</Link></div>
+                        <div className="grid-100">
+                            {
+                                authUser && authUser.id == user.id ?   //Restricting user
+                            <span>
+                                <Link className="button" to={`/courses/${course.id}/update/`} >Update Course</Link>
+                                <Link onClick={this.delete} className="button" to="#" >Delete Course</Link>
+                                </span>
+                                :null
+                            }
+                                <Link className="button button-secondary" to="/" >Return to List</Link></div>
                 </div>
             </div>
                 <div className="bounds course--detail">
@@ -89,7 +105,7 @@ export default class CourseDetail extends Component {
                             <p>By {user.firstName} {user.lastName}</p>
                         </div>
                         <div className="course--description">
-                            <p>{course.description}</p>
+                            <ReactMarkDown source={course.description} />
                         </div>
                     </div>
                     <div className="grid-25 grid-right">
@@ -102,7 +118,7 @@ export default class CourseDetail extends Component {
                                 <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
                                     <ul>
-                                        <li>{course.materialsNeeded}</li>
+                                        <ReactMarkDown source={course.materialsNeeded} />
                                     </ul>
                                 </li>
                             </ul>

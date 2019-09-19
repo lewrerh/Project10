@@ -12,6 +12,7 @@ router.get('/', authenticateUser, (req, res) => {
     const user = req.currentUser;
     console.log(user);
     res.json({
+        id: user.dataValues.id,
         name: user.dataValues.firstName + " " + user.dataValues.lastName,
         username: user.dataValues.emailAddress,
 
