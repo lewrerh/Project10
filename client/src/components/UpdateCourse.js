@@ -43,7 +43,7 @@ export default class UpdateCourse extends Component {
             });
     }
 
-    render() {
+    render() {      //Render using CourseForm
         const {
             title,
             description,

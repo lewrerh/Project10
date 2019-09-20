@@ -11,7 +11,7 @@ export default ({ component: Component, ...rest }) => {
           render={props => context.authenticatedUser ? (
               <Component {...props} />
             ) : (
-              <Redirect to={{
+              <Redirect to={{     //If no authUser, redirect to signin page
                 pathname: '/signin',
                 state: { from: props.location }
               }} />

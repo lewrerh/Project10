@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+export default (props) => {           //Form used on Signin & signup with button/displays errors
   const {
     cancel,
     errors,

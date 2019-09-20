@@ -86,7 +86,7 @@ export default class CourseDetail extends Component {   //Stateless component fu
                 <div className="bounds">
                         <div className="grid-100">
                             {
-                                authUser && authUser.id == user.id ?   //Restricting user
+                                authUser && authUser.id == user.id ?   //Restricting user tenarary
                             <span>
                                 <Link className="button" to={`/courses/${course.id}/update/`} >Update Course</Link>
                                 <Link onClick={this.delete} className="button" to="#" >Delete Course</Link>

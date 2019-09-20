@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Form from './Form';
+import Form from './Form';   //Imported Form used
 
 export default class UserSignUp extends Component {
   state = {
@@ -13,7 +13,7 @@ export default class UserSignUp extends Component {
   }
 
   render() {
-    const {
+    const {        //Render state 
       firstName,
       lastName,
       emailAddress,
@@ -127,7 +127,7 @@ export default class UserSignUp extends Component {
           this.setState({ errors: []});
           context.actions.signIn(emailAddress, password)
             .then(() => {
-              this.props.history.push('/authenticated');    
+              this.props.history.push('/');    
             });
         }
       })

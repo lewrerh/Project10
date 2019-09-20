@@ -5,7 +5,7 @@ import { createCipher } from 'crypto';
 import axios from 'axios';
 
 import {
-    BrowserRouter as Router,
+    BrowserRouter as Router,      //BrowerRouter/Switch
     Route,
     Switch
 } from 'react-router-dom';

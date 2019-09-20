@@ -19,9 +19,9 @@ import React from 'react';
      cancel();
    }
 
-    return (
+    return (                   //CourseForm used to Create course
      <div className="bounds course--detail">
-       <h1>Create Course</h1>
+       <h1>Create Course</h1>        
        <div>
          <ErrorsDisplay errors={errors} />
          <form onSubmit={handleSubmit}>

@@ -49,7 +49,7 @@ export default class Data {   //Class usses fetch for functions to use API
       throw new Error();
     }
   }
-  async getCourse(id) {
+  async getCourse(id) {         //Added to get course
     const response = await this.api(`/courses/${id}`);
     if (response.status === 200) {
       return response.json().then(data => data);
@@ -80,7 +80,7 @@ export default class Data {   //Class usses fetch for functions to use API
     }
   }
 
-  async createCourse(course, username, password) {
+  async createCourse(course, username, password) {    //added createCourse
     const response = await this.api('/courses', 'POST', course, true, {username, password} );
     
     if (response.status === 201) {
@@ -96,7 +96,7 @@ export default class Data {   //Class usses fetch for functions to use API
     }
   }
 
-  async deleteCourse(id, username, password) {
+  async deleteCourse(id, username, password) {   //Sending ID to the API
     const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {username, password} );
     
     if (response.status === 204) {
