@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import UpdateCourseForm from './UpdateCourseForm';
 
 export default class UpdateCourse extends Component {

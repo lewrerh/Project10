@@ -1,8 +1,6 @@
 import React, { Component }  from 'react';         //Imports for all routes used
-import logo from './logo.svg';
 import './App.css';
-import { createCipher } from 'crypto';
-import axios from 'axios';
+
 
 import {
     BrowserRouter as Router,      //BrowerRouter/Switch
